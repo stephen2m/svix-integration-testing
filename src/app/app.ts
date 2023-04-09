@@ -2,7 +2,8 @@ import Koa from 'koa';
 import HttpStatus from 'http-status-codes';
 import bodyParser from 'koa-bodyparser';
 
-import svixController from '../svix/svix.controller';
+import { responseTimeHeader } from '../middleware';
+import svixController from '../controllers/svix.controller';
 
 const app:Koa = new Koa();
 
@@ -19,6 +20,7 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
     ctx.app.emit('error', error, ctx);
   }
 });
+app.use(responseTimeHeader);
 
 app.use(svixController.routes());
 app.use(svixController.allowedMethods());

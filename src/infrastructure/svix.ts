@@ -1,6 +1,6 @@
 import { Svix } from 'svix';
 
-import { getSettings } from '../../settings';
+import { getSettings } from '../settings';
 
 const settings = getSettings();
 
@@ -12,9 +12,6 @@ export async function getLoginUrl(clientId: string) {
   const url = await svixSDK.authentication.appPortalAccess(clientId, {
     featureFlags: [    ],
   });
-    // await svixSDK.authentication.expireAll(clientId, {
-    //     expiry: 15
-    // });
 
   return url;
 }

@@ -15,7 +15,7 @@ export function getSettings(): Settings {
   settings = {
     port,
     isDevelopment: !!process.env.DEVELOPMENT,
-    svixApiKey: process.env.SVIX_API_KEY,
+    svixApiKey: process.env.SVIX_API_KEY
   };
 
   return settings;
