@@ -4,7 +4,6 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "lint": "eslint -c .eslintrc.js --ext .ts src",
     "lint:fix": "eslint -c .eslintrc.js --ext .ts src --fix",
     "build": "tsc --outDir ./build/src",
