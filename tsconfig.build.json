@@ -1,18 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es2015",
     "module": "commonjs",
+    "resolveJsonModule": true,
     "strict": true,
+    "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
     "paths": {
       "src/*": ["./src/*"]
     },
-    "esModuleInterop": true,
     "typeRoots": ["./node_modules/koa-body", "./node_modules/@types"]
   },
-  "include": ["src", "__tests__", "migrations"]
+  "include": ["src"]
 }
