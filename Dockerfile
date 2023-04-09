@@ -19,7 +19,7 @@ RUN pnpm prune --prod
 FROM base AS deploy
 
 WORKDIR /app
-COPY --from=build /app/dist/ ./dist/
+COPY --from=build /app/build/ ./build/
 COPY --from=build /app/node_modules ./node_modules
 
-CMD [ "node", "dist/src/server.js" ]
+CMD [ "node", "build/src/server.js" ]
