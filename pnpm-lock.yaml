@@ -31,6 +31,9 @@ importers:
       typescript:
         specifier: ^4.1.6
         version: 4.1.6
+      winston:
+        specifier: ^3.8.2
+        version: 3.8.2
     devDependencies:
       '@types/express':
         specifier: ^4.17.17
