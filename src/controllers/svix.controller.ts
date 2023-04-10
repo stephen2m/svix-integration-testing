@@ -31,7 +31,7 @@ router.post('/events', async (ctx:Koa.Context) => {
   ]
 
   if (importantEvents.includes(eventType)) {
-    logger.info('Received operational webhook', svixEvent);
+    logger.info('Received operational webhook', { svixEvent });
   } else {
     logger.warning(`Skipped processing operational webhook of type ${eventType}`);
   }
