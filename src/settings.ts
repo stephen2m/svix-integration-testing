@@ -3,6 +3,7 @@ export type Settings = {
   isDevelopment: boolean;
   svixApiKey?: string;
   svixOpsWebhookSecret?: string;
+  logTailToken?: string
 };
 
 let settings: Settings | null = null;
@@ -17,7 +18,8 @@ export function getSettings(): Settings {
     port,
     isDevelopment: !!process.env.DEVELOPMENT,
     svixApiKey: process.env.SVIX_API_KEY,
-    svixOpsWebhookSecret: process.env.SVIX_OPS_WEBHOOKS_SECRET
+    svixOpsWebhookSecret: process.env.SVIX_OPS_WEBHOOKS_SECRET,
+    logTailToken: process.env.LOGTAIL_TOKEN
   };
 
   return settings;

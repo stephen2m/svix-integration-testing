@@ -1,4 +1,4 @@
-import {Svix} from 'svix';
+import { Svix } from 'svix';
 
 import { getSettings } from '../settings';
 
