@@ -7,7 +7,8 @@
     "lint": "eslint -c .eslintrc.js --ext .ts src",
     "lint:fix": "eslint -c .eslintrc.js --ext .ts src --fix",
     "build": "tsc --outDir ./build/src",
-    "serve": "nodemon"
+    "serve": "nodemon",
+    "serve:dev": "nodemon"
   },
   "keywords": [],
   "author": "",
