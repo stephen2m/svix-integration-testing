@@ -1,9 +1,11 @@
 import Koa from 'koa';
 import HttpStatus from 'http-status-codes';
 import bodyParser from 'koa-bodyparser';
+const winston = require('winston');
 
 import { responseTimeHeader } from '../middleware';
 import svixController from '../controllers/svix.controller';
+import  { logger } from '../infrastructure/logging';
 
 const app:Koa = new Koa();
 
@@ -27,5 +29,11 @@ app.use(svixController.allowedMethods());
 
 // Application error logging.
 app.on('error', console.error);
+
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple(),
+  }));
+}
 
 export default app;

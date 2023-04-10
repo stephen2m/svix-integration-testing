@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import Router from 'koa-router';
 import { getLoginUrl } from '../infrastructure/svix';
-
+import  { logger } from '../infrastructure/logging';
 
 const routerOpts: Router.IRouterOptions = {
   prefix: '/svix',
@@ -21,7 +21,6 @@ router.post('/events', async (ctx:Koa.Context) => {
   const svixEvent = ctx.request.body;
   // @ts-ignore
   const eventType = svixEvent.type;
-  let message;
 
   const importantEvents = [
       'endpoint.deleted',
@@ -32,14 +31,13 @@ router.post('/events', async (ctx:Koa.Context) => {
   ]
 
   if (importantEvents.includes(eventType)) {
-    console.log(svixEvent);
-    message = `Operational webhook of type ${eventType} received`
+    logger.info('Received operational webhook', svixEvent);
   } else {
-    message = `Skipped processing operational webhook of type ${eventType}`;
+    logger.warning(`Skipped processing operational webhook of type ${eventType}`);
   }
 
   ctx.body = {
-    message
+    message: 'Operational webhook received'
   };
 });
 

@@ -1,4 +1,4 @@
-import { Svix } from 'svix';
+import {Svix} from 'svix';
 
 import { getSettings } from '../settings';
 
@@ -9,9 +9,7 @@ const svixSDK = new Svix(settings.svixApiKey ?? '');
 export async function getLoginUrl(clientId: string) {
   await svixSDK.application.getOrCreate({ uid: clientId, name: clientId });
 
-  const url = await svixSDK.authentication.appPortalAccess(clientId, {
-    featureFlags: [    ],
+  return await svixSDK.authentication.appPortalAccess(clientId, {
+    featureFlags: [],
   });
-
-  return url;
 }
