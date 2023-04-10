@@ -20,7 +20,7 @@ router.post('/clients/login', async (ctx:Koa.Context) => {
 router.post('/events', async (ctx:Koa.Context) => {
   const svixEvent = ctx.request.body;
   // @ts-ignore
-  const eventType = svixEvent.data.type;
+  const eventType = svixEvent.type;
   let message;
 
   const importantEvents = [
