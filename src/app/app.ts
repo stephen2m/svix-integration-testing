@@ -2,6 +2,7 @@ import Koa from 'koa';
 import HttpStatus from 'http-status-codes';
 import bodyParser from 'koa-bodyparser';
 const winston = require('winston');
+const auth = require('koa-basic-auth');
 
 import { responseTimeHeader } from '../middleware';
 import svixController from '../controllers/svix.controller';
@@ -23,6 +24,7 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
   }
 });
 app.use(responseTimeHeader);
+app.use(auth({ name: process.env.SVIX_AUTH_USERNAME, pass: process.env.SVIX_AUTH_PASSWORD }));
 
 app.use(svixController.routes());
 app.use(svixController.allowedMethods());
