@@ -13,3 +13,11 @@ export async function getLoginUrl(clientId: string) {
     featureFlags: [],
   });
 }
+
+export async function getEndpointDetails(appId: string, endpointId: string) {
+  return await svixSDK.endpoint.get(appId, endpointId);
+}
+
+export async function getEndpointStats(appId: string, endpointId: string) {
+  return await svixSDK.endpoint.getStats(appId, endpointId);
+}

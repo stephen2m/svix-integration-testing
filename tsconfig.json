@@ -8,11 +8,9 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
-    "paths": {
-      "src/*": ["./src/*"]
-    },
     "esModuleInterop": true,
-    "typeRoots": ["./node_modules/koa-body", "./node_modules/@types"]
+    "typeRoots": ["./node_modules/koa-body", "./node_modules/@types"],
+    "baseUrl": "./src"
   },
   "include": ["src", "__tests__", "migrations"]
 }
