@@ -39,14 +39,13 @@ router.post('/events', async (ctx:Koa.Context) => {
   if (importantEvents.includes(svixEvent.type)) {
     logger.info('Received operational webhook', { svixEvent });
 
-    let metric = {};
-    const endpointDetails = await getEndpointDetails(svixEvent.data.appUid, svixEvent.data.endpointId);
-    metric = {
+    const endpoint = await getEndpointDetails(svixEvent.data.appUid, svixEvent.data.endpointId);
+    const metric = {
       type: eventType,
       clientId: svixEvent.data.appUid,
-      endpoint: { endpointDetails },
+      endpoint,
     }
-    logger.info('Operational webhook metric', { metric });
+    logger.info('Outgoing details in operational webhook event', { metric });
 
     if (settings.metricsEndpoint != null) {
       await axios.post(settings.metricsEndpoint, metric);
