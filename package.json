@@ -8,7 +8,8 @@
     "lint:fix": "eslint -c .eslintrc.js --ext .ts src --fix",
     "build": "tsc --outDir ./build/src",
     "serve": "nodemon",
-    "serve:dev": "nodemon"
+    "serve:dev": "nodemon",
+    "update-svix-schema:dev": "npx ts-node src/infrastructure/svix/migrate-svix-schema.ts"
   },
   "keywords": [],
   "author": "",

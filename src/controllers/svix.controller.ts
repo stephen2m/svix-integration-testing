@@ -61,4 +61,9 @@ router.post('/events', async (ctx:Koa.Context) => {
   };
 });
 
+router.get('/clients/endpoints', async (ctx:Koa.Context) => {
+    const { clientId, filterType } = ctx.request.query;
+    ctx.body = await listEndpoints(clientId, filterType);
+})
+
 export default router;
