@@ -1,6 +1,7 @@
 import { ApiException, EventTypeIn, Svix } from 'svix';
 
 import { getSettings } from '../../settings';
+import { logger } from '../logging';
 
 const settings = getSettings();
 
@@ -41,4 +42,18 @@ export async function listEndpoints(
 
   // @ts-ignore
   return result.data;
+}
+
+export async function getEndpointDetails(appId: string, endpointId: string) {
+  try {
+    return await svixSDK.endpoint.get(appId, endpointId);
+  } catch (err) {
+    logger.error(err as Error);
+
+    return null
+  }
+}
+
+export async function getEndpointStats(appId: string, endpointId: string) {
+  return await svixSDK.endpoint.getStats(appId, endpointId);
 }

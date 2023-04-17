@@ -2,7 +2,7 @@ import axios from 'axios';
 import Koa from 'koa';
 import Router from 'koa-router';
 
-import { getEndpointDetails, getLoginUrl } from '../infrastructure/svix';
+import { getEndpointDetails, getLoginUrl, listEndpoints } from '../infrastructure/svix';
 import  { logger } from '../infrastructure/logging';
 import { OperationalWebhookEvent } from '../interfaces';
 import { getSettings } from '../settings';
@@ -43,7 +43,7 @@ router.post('/events', async (ctx:Koa.Context) => {
     const metric = {
       type: eventType,
       clientId: svixEvent.data.appUid,
-      endpoint,
+      endpoint: endpoint === null ? svixEvent : endpoint
     }
     logger.info('Outgoing details in operational webhook event', { metric });
 
