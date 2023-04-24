@@ -36,7 +36,7 @@ router.post('/events', async (ctx:Koa.Context) => {
       'message.attempt.failing'
   ];
 
-  if (importantEvents.includes(svixEvent.type)) {
+  if (importantEvents.includes(svixEvent.type) && !svixEvent.data.appUid.startsWith('test')) {
     logger.info('Received operational webhook', { svixEvent });
 
     const endpoint = await getEndpointDetails(svixEvent.data.appUid, svixEvent.data.endpointId);
@@ -53,7 +53,7 @@ router.post('/events', async (ctx:Koa.Context) => {
       logger.error('Skipped metric reporting.  Missing environment variable METRICS_ENDPOINT')
     }
   } else {
-    logger.warn(`Skipped processing operational webhook of type ${eventType}`);
+    logger.warn(`Skipped processing operational webhook of type ${eventType} from app ${svixEvent.data.appUid}`);
   }
 
   ctx.body = {
